@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apache.ibatis.submitted.staff.StaffMapper">
+    <select id="findStaff" resultMap="BaseResultMap">
+        select b.*, a.company_name
+        from company a
+        join staff b on a.tenant_id = b.tenant_id
+        <where>
+            <if test="staffName != null and staffName != ''">
+                and b.staff_name = #{staffName}
+            </if>
+        </where>
+    </select>
+</mapper>
